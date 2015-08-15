@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
+require "bundler/setup"
+require "onliner_by"
+
+require 'capybara/dsl'
+require 'capybara-webkit'
+
+class AdsUpper
+  include Capybara::DSL
+
+  def initialize
+    Capybara.javascript_driver = :webkit
+    Capybara.run_server = false
+    Capybara.app_host = 'http://www.onliner.by'
+    Capybara.current_driver = Capybara.javascript_driver
+    Capybara::Webkit.configure do |config|
+      config.allow_unknown_urls
+    end
+    Capybara.reset_session!
+  end
+  
+  def run!
+    visit "/"
+    find(".auth-bar__item.auth-bar__item--text", text: "Вход").click
+    find("[placeholder='Ник или e-mail']").set(ENV['ONLINER_BY_LOGIN'])
+    find("[placeholder='Пароль']").set(ENV['ONLINER_BY_PASSWORD'])
+    click_on "Войти"
+    find("p.user-name > a").click
+    click_on "Объявления"
+    find("#select-all-my-adverts").click
+    find("ul.mass-up a").click
+  end
+end
+
+AdsUpper.new.run!
