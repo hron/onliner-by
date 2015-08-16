@@ -6,6 +6,7 @@ require "onliner_by"
 
 require 'capybara/dsl'
 require 'capybara-webkit'
+require 'headless'
 
 class AdsUpper
   include Capybara::DSL
@@ -34,4 +35,6 @@ class AdsUpper
   end
 end
 
-AdsUpper.new.run!
+Headless.ly do 
+  AdsUpper.new.run!
+end
