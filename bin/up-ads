@@ -36,7 +36,8 @@ class AdsUpper
     find("p.user-name > a").click
     click_on "Объявления в каталоге"
     # click_on "UP! всех объявлений"
-    find('#used-user-additional a.button_up').click
+    # find('#used-user-additional a.button_up').click
+    page.execute_javascript("$('#used-user-additional a.button_up').click()")
   end
 end
 
