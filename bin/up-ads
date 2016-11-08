@@ -38,6 +38,7 @@ class AdsUpper
     # click_on "UP! всех объявлений"
     # find('#used-user-additional a.button_up').click
     page.execute_script("$('#used-user-additional a.button_up').click()")
+    sleep 3
   end
 end
 
