@@ -19,6 +19,7 @@ class AdsUpper
       config.allow_unknown_urls
     end
     Capybara.reset_session!
+    Capybara.default_max_wait_time = 12
   end
   
   def run!
@@ -37,7 +38,8 @@ class AdsUpper
     click_on "Объявления в каталоге"
     # click_on "UP! всех объявлений"
     # find('#used-user-additional a.button_up').click
-    page.execute_javascript("$('#used-user-additional a.button_up').click()")
+    page.execute_script("$('#used-user-additional a.button_up').click()")
+    sleep 3
   end
 end
 
