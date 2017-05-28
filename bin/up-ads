@@ -19,6 +19,7 @@ class AdsUpper
       config.allow_unknown_urls
     end
     Capybara.reset_session!
+    Capybara.default_max_wait_time = 12
   end
   
   def run!
