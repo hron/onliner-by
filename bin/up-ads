@@ -28,16 +28,20 @@ class AdsUpper
     find("[placeholder='Пароль']").set(ENV['ONLINER_BY_PASSWORD'])
     click_on "Войти"
 
-    find("p.user-name > a").click
-    click_on "Объявления в барахолке"
+    # find('.b-top-profile__image').click
+    # find('.b-top-profile__overflow > div:nth-of-type(5) > .b-top-profile__subitem > span.b-top-profile__link').click()
+    # click_on 'Объявления в барахолке'
+    find('#userbar')
+    puts page.evaluate_script("$('a[href*=ufleamarket]').attr('href')")
+    visit page.evaluate_script("$('a[href*=ufleamarket]').attr('href')")
     find("#select-all-my-adverts").click
     find("ul.mass-up a").click
 
-    find("p.user-name > a").click
-    click_on "Объявления в каталоге"
-    # click_on "UP! всех объявлений"
-    # find('#used-user-additional a.button_up').click
-    page.execute_script("$('#used-user-additional a.button_up').click()")
+    # find("p.user-name > a").click
+    # click_on "Объявления в каталоге"
+    # # click_on "UP! всех объявлений"
+    # # find('#used-user-additional a.button_up').click
+    # page.execute_script("$('#used-user-additional a.button_up').click()")
     sleep 3
   end
 end
